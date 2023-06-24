@@ -10,13 +10,13 @@ class RedBlackTree {
         Node right;
     }
 
-    private boolean addNode(Node node, int value) {
+    private boolean insert(Node node, int value) {
         if (node.value == value) {
             return false;
         } else {
             if (node.value > value) {
                 if (node.left != null) {
-                    boolean result = addNode(node.left, value);
+                    boolean result = insert(node.left, value);
                     node.left = rebalnce(node.left);
                     return result;
                 } else {
@@ -27,7 +27,7 @@ class RedBlackTree {
                 }
             } else {
                 if (node.right != null) {
-                    boolean result = addNode(node.right, value);
+                    boolean result = insert(node.right, value);
                     node.right = rebalnce(node.right);
                     return result;
                 } else {
@@ -41,9 +41,9 @@ class RedBlackTree {
         }
     }
 
-    public boolean add(int value) {
+    public boolean insert(int value) {
         if (root != null) {
-            boolean result = addNode(root, value);
+            boolean result = insert(root, value);
             root = rebalnce(root);
             root.color = Color.BLACK;
             return result;

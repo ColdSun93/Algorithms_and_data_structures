@@ -12,7 +12,7 @@ public class Main {
             while (true) {
                 try {
                     int value = Integer.parseInt((reader.readLine()));
-                    tree.add(value);
+                    tree.insert(value);
                     System.out.println("finish");
                 } catch (Exception ignored) {
 
