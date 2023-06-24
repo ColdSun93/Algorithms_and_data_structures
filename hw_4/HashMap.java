@@ -1,21 +1,23 @@
 package hw_4;
 
-class HashMap{
-    class Entity{
+class HashMap {
+    class Entity {
         int key;
         int value;
     }
-    class Basket{
+
+    class Basket {
         Node head;
-        class Node{
+
+        class Node {
             Entity entity;
             Node next;
         }
 
-        public Integer find(int key){ // O(1)
+        public Integer find(int key) { // O(1)
             Node node = head;
-            while(node != null){
-                if(node.entity.key == key){
+            while (node != null) {
+                if (node.entity.key == key) {
                     return node.entity.value;
                 }
                 node = node.next;
@@ -23,16 +25,16 @@ class HashMap{
             return null;
         }
 
-        public boolean push(Entity entity){ // O(1)
+        public boolean push(Entity entity) { // O(1)
             Node node = new Node();
             node.entity = entity;
 
-            if(head == null){
+            if (head == null) {
                 head = node;
-            }else{
-                if(head.entity.key == entity.key){
+            } else {
+                if (head.entity.key == entity.key) {
                     return false;
-                }else {
+                } else {
                     Node cur = head;
                     while (cur.next != null) {
                         if (cur.next.entity.key == entity.key) {
@@ -46,8 +48,8 @@ class HashMap{
             return true;
         }
 
-        public boolean remove(int key){ // O(1)
-            if(head != null) {
+        public boolean remove(int key) { // O(1)
+            if (head != null) {
                 if (head.entity.key == key) {
                     head = head.next;
                     return true;
@@ -70,31 +72,31 @@ class HashMap{
 
     Basket[] baskets;
 
-    public HashMap(){
+    public HashMap() {
         this(INIT_SIZE);
     }
 
-    public HashMap(int size){
+    public HashMap(int size) {
         baskets = new Basket[size];
     }
 
-    private int getIndex(int key){
+    private int getIndex(int key) {
         return key % baskets.length;
     }
 
-    public Integer find(int key){ // O(1)
+    public Integer find(int key) { // O(1)
         int index = getIndex(key);
         Basket basket = baskets[index];
-        if(basket != null){
+        if (basket != null) {
             return basket.find(key);
         }
         return null;
     }
 
-    public boolean push(int key, int value){
+    public boolean push(int key, int value) {
         int index = getIndex(key);
         Basket basket = baskets[index];
-        if(basket == null){
+        if (basket == null) {
             basket = new Basket();
             baskets[index] = basket;
         }
@@ -104,10 +106,10 @@ class HashMap{
         return basket.push(entity);
     }
 
-    public boolean remove(int key){
+    public boolean remove(int key) {
         int index = getIndex(key);
         Basket basket = baskets[index];
-        if(basket != null){
+        if (basket != null) {
             return basket.remove(key);
         }
         return false;
